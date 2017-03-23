@@ -11,7 +11,6 @@
     tools:context="com.example.android.justjava.MainActivity"
     >
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,30 +19,34 @@
         android:textAllCaps="true"
         />
 
-    <Button
-        android:layout_height="48dp"
-        android:layout_width="48dp"
-        android:text="+"
-        android:textAllCaps="true"
-        android:onClick="increment"
-        />
-
-    <TextView
-        android:id="@+id/quantity_text_view"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2"
-        android:textSize="16sp"
-        android:textColor="@android:color/black"
-        />
-
-    <Button
-        android:layout_height="48dp"
-        android:layout_width="48dp"
-        android:text="-"
-        android:textAllCaps="true"
-        android:onClick="decrement"
-        />
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_height="48dp"
+            android:layout_width="48dp"
+            android:text="-"
+            android:textAllCaps="true"
+            android:onClick="decrement"
+            />
+        <TextView
+            android:id="@+id/quantity_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:padding="10dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            />
+        <Button
+            android:layout_height="48dp"
+            android:layout_width="48dp"
+            android:text="+"
+            android:textAllCaps="true"
+            android:onClick="increment"
+            />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
