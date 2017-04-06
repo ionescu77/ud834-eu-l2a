@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return the total price
      * @itemPrice is the price of one cup of coffee
+     * @quantity is the number of cups of coffee
      *
      */
     private int calculatePrice(int quantity, int itemPrice) {
@@ -54,14 +55,14 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Creates summary of order.
      *
-     * @return the total price
-     * @itemPrice is the price of one cup of coffee
+     * @return a text for Order Summary
+     * @totalPrice is the total price of the order
      *
      */
-    private String createOrderSummary(int price) {
-        String priceMessage = "Name: Kaptain Kunal\n";
-        priceMessage += "Quantity: " + quantity + "\n";
-        priceMessage += "Total: $" + price;
+    private String createOrderSummary(int totalPrice) {
+        String priceMessage = "Name: Kaptain Kunal";
+        priceMessage += "\nQuantity: " + quantity;
+        priceMessage += "\nTotal: $" + totalPrice;
         priceMessage += "\nThank you!";
         return priceMessage;
     }
