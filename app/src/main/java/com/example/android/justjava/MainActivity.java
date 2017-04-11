@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import static com.example.android.justjava.R.id.checkChoco;
@@ -38,15 +39,18 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
         int price = calculatePrice(quantity, 5);
-        Log.v("MainActivity", "The price is " + price);
+//        Log.v("MainActivity", "The price is " + price);
+
+        String userName =((EditText) findViewById(R.id.userNameField)).getText().toString();
+        Log.v("MainActivity", "Username is " + userName);
 
         boolean hasWhippedCream = ((CheckBox) findViewById(checkWhippedCream)).isChecked();
-        Log.v("MainActivity", "Whipped cream  " + hasWhippedCream);
+//        Log.v("MainActivity", "Whipped cream  " + hasWhippedCream);
 
         boolean hasChoco = ((CheckBox) findViewById(checkChoco)).isChecked();
-        Log.v("MainActivity", "Chocolate please  " + hasChoco);
+//        Log.v("MainActivity", "Chocolate please  " + hasChoco);
 
-        String orderSummary = createOrderSummary(price, hasWhippedCream, hasChoco);
+        String orderSummary = createOrderSummary(price, hasWhippedCream, hasChoco, userName);
         displayMessage(orderSummary);
     }
 
@@ -69,12 +73,13 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param hasWhippedCream is whether or not the user wants whipped cream topping
      * @param hasChoco is whether or not the user wants whipped cream topping
-     * @return a text for Order Summary
+     * @param userName is the actual name of the user as introduced in the EditText field
      * @totalPrice is the total price of the order
+     * @return a text for Order Summary
      *
      */
-    private String createOrderSummary(int totalPrice, boolean hasWhippedCream, boolean hasChoco) {
-        String priceMessage = "Name: Kaptain Kunal";
+    private String createOrderSummary(int totalPrice, boolean hasWhippedCream, boolean hasChoco, String userName) {
+        String priceMessage = "Name: " + userName;
         priceMessage += "\nAdd whipped cream? " + hasWhippedCream;
         priceMessage += "\nAdd chocolate? " + hasChoco;
         priceMessage += "\nQuantity: " + quantity;
