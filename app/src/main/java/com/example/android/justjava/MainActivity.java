@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import static com.example.android.justjava.R.id.checkChoco;
 import static com.example.android.justjava.R.id.checkWhippedCream;
 
 
@@ -42,7 +43,10 @@ public class MainActivity extends AppCompatActivity {
         boolean hasWhippedCream = ((CheckBox) findViewById(checkWhippedCream)).isChecked();
         Log.v("MainActivity", "Whipped cream  " + hasWhippedCream);
 
-        String orderSummary = createOrderSummary(price, hasWhippedCream);
+        boolean hasChoco = ((CheckBox) findViewById(checkChoco)).isChecked();
+        Log.v("MainActivity", "Chocolate please  " + hasChoco);
+
+        String orderSummary = createOrderSummary(price, hasWhippedCream, hasChoco);
         displayMessage(orderSummary);
     }
 
@@ -63,13 +67,16 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Creates summary of order.
      *
+     * @param hasWhippedCream is whether or not the user wants whipped cream topping
+     * @param hasChoco is whether or not the user wants whipped cream topping
      * @return a text for Order Summary
      * @totalPrice is the total price of the order
      *
      */
-    private String createOrderSummary(int totalPrice, boolean hasWhippedCream) {
+    private String createOrderSummary(int totalPrice, boolean hasWhippedCream, boolean hasChoco) {
         String priceMessage = "Name: Kaptain Kunal";
         priceMessage += "\nAdd whipped cream? " + hasWhippedCream;
+        priceMessage += "\nAdd chocolate? " + hasChoco;
         priceMessage += "\nQuantity: " + quantity;
         priceMessage += "\nTotal: $" + totalPrice;
         priceMessage += "\nThank you!";
