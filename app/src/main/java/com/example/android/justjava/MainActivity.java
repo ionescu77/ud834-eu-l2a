@@ -61,21 +61,21 @@ public class MainActivity extends AppCompatActivity {
      * Calculates the price of the order based on the current quantity.
      *
      * @return the total price
-     * @itemPrice is the price of one cup of coffee
-     * @quantity is the number of cups of coffee
+     * @param hasWhippedCream  does the client want Whipped Cream
+     * @param hasChoco   does the client want Chocolate topping
+     * @param quantity is the number of cups of coffee
      *
      */
     private int calculatePrice(int quantity, boolean hasWhippedCream, boolean hasChoco) {
         int basePrice = 5;
         Log.v("MainActivity", "Initial base price is " + basePrice);
 
-        if (hasWhippedCream) { basePrice += 1; };
-        if (hasChoco) { basePrice += 2; };
+        if (hasWhippedCream) { basePrice += 1; }
+        if (hasChoco) { basePrice += 2; }
         Log.v("MainActivity", "The base price is " + basePrice);
 
 
-        int price = quantity * basePrice;
-        return price;
+       return quantity * basePrice;
     }
 
     /**
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
      * @param hasWhippedCream is whether or not the user wants whipped cream topping
      * @param hasChoco is whether or not the user wants whipped cream topping
      * @param userName is the actual name of the user as introduced in the EditText field
-     * @totalPrice is the total price of the order
+     * @param totalPrice is the total price of the order
      * @return a text for Order Summary
      *
      */
