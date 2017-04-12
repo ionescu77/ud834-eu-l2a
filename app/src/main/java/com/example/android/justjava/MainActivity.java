@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int basePrice = 5;
-        Log.v("MainActivity", "Initial base price is " + basePrice);
 
         String userName =((EditText) findViewById(R.id.userNameField)).getText().toString();
         Log.v("MainActivity", "Username is " + userName);
@@ -50,11 +48,7 @@ public class MainActivity extends AppCompatActivity {
         boolean hasChoco = ((CheckBox) findViewById(checkChoco)).isChecked();
 //        Log.v("MainActivity", "Chocolate please  " + hasChoco);
 
-        if (hasWhippedCream) { basePrice += 1; };
-        if (hasChoco) { basePrice += 2; };
-        Log.v("MainActivity", "The base price is " + basePrice);
-
-        int price = calculatePrice(quantity, basePrice);
+        int price = calculatePrice(quantity, hasWhippedCream, hasChoco);
 //        Log.v("MainActivity", "The price is " + price);
 
         String orderSummary = createOrderSummary(price, hasWhippedCream, hasChoco, userName);
@@ -70,8 +64,16 @@ public class MainActivity extends AppCompatActivity {
      * @quantity is the number of cups of coffee
      *
      */
-    private int calculatePrice(int quantity, int itemPrice) {
-        int price = quantity * itemPrice;
+    private int calculatePrice(int quantity, boolean hasWhippedCream, boolean hasChoco) {
+        int basePrice = 5;
+        Log.v("MainActivity", "Initial base price is " + basePrice);
+
+        if (hasWhippedCream) { basePrice += 1; };
+        if (hasChoco) { basePrice += 2; };
+        Log.v("MainActivity", "The base price is " + basePrice);
+
+
+        int price = quantity * basePrice;
         return price;
     }
 
