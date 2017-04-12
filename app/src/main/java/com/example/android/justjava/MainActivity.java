@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
      * This is GLOBAL Variable declaration.
      */
     int quantity = 2;
+    boolean takeAway;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.take_away:
+                if (checked)
+                    takeAway = true;
+                    break;
+            case R.id.drink_here:
+                if (checked)
+                    takeAway = false;
+                    break;
+        }
+    }
     /**
      * This method is called when the order button is clicked.
      */
@@ -54,10 +73,11 @@ public class MainActivity extends AppCompatActivity {
         int price = calculatePrice(quantity, hasWhippedCream, hasChoco);
 //        Log.v("MainActivity", "The price is " + price);
 
-        String orderSummary = createOrderSummary(price, hasWhippedCream, hasChoco, userName);
-        // displayMessage(orderSummary);
+        String orderSummary = createOrderSummary(price, hasWhippedCream, hasChoco, takeAway, userName);
 
-        sendEmail("Coffe Order", orderSummary);
+        displayMessage(orderSummary);
+
+//        sendEmail("Coffe Order", orderSummary);
     }
 
     public void sendEmail(String subject, String messageText) {
@@ -101,12 +121,13 @@ public class MainActivity extends AppCompatActivity {
      * @return a text for Order Summary
      *
      */
-    private String createOrderSummary(int totalPrice, boolean hasWhippedCream, boolean hasChoco, String userName) {
+    private String createOrderSummary(int totalPrice, boolean hasWhippedCream, boolean hasChoco, boolean takeAway, String userName) {
         String priceMessage = "Name: " + userName;
         priceMessage += "\nAdd whipped cream? " + hasWhippedCream;
         priceMessage += "\nAdd chocolate? " + hasChoco;
         priceMessage += "\nQuantity: " + quantity;
         priceMessage += "\nTotal: $" + totalPrice;
+        priceMessage += "\nTake away: " + takeAway;
         priceMessage += "\nThank you!";
         return priceMessage;
     }
