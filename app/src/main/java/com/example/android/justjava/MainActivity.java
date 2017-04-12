@@ -57,10 +57,10 @@ public class MainActivity extends AppCompatActivity {
         String orderSummary = createOrderSummary(price, hasWhippedCream, hasChoco, userName);
         // displayMessage(orderSummary);
 
-        composeEmail("Coffe Order", orderSummary);
+        sendEmail("Coffe Order", orderSummary);
     }
 
-    public void composeEmail(String subject, String messageText) {
+    public void sendEmail(String subject, String messageText) {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));           // only email app to handle thisraz
         intent.putExtra(Intent.EXTRA_SUBJECT, subject);
