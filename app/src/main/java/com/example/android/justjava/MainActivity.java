@@ -6,6 +6,8 @@
  */
 package com.example.android.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -53,9 +55,20 @@ public class MainActivity extends AppCompatActivity {
 //        Log.v("MainActivity", "The price is " + price);
 
         String orderSummary = createOrderSummary(price, hasWhippedCream, hasChoco, userName);
-        displayMessage(orderSummary);
+        // displayMessage(orderSummary);
+
+        composeEmail("Coffe Order", orderSummary);
     }
 
+    public void composeEmail(String subject, String messageText) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));           // only email app to handle thisraz
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, messageText);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
 
     /**
      * Calculates the price of the order based on the current quantity.
